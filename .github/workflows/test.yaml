@@ -11,12 +11,12 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          - macos-14
+          - macos-latest
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: Swatinem/rust-cache@v2
-      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: swatinem/rust-cache@v2
+      - uses: homebrew/actions/setup-homebrew@master
       - run: tools/setup.sh
       - run: cargo test
   lint:
