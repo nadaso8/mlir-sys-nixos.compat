@@ -18,6 +18,7 @@ fn main() {
 }
 
 fn run() -> Result<(), Box<dyn Error>> {
+    println!("hello I am the nix comaptible fork of mlir-sys");
     let version = llvm_config("--version")?;
 
     if !version.starts_with(&format!("{LLVM_MAJOR_VERSION}.",)) {
@@ -97,10 +98,16 @@ fn get_system_libcpp() -> Option<&'static str> {
     }
 }
 
+/// I would like to avoid using this tool at all if possible ideally removing llvm-config as a required part of the
+/// llvm installation
+///
 fn llvm_config(argument: &str) -> Result<String, Box<dyn Error>> {
+    //
     let prefix = env::var(format!("MLIR_SYS_{LLVM_MAJOR_VERSION}0_PREFIX"))
         .map(|path| Path::new(&path).join("bin"))
         .unwrap_or_default();
+
+    //
     let call = format!(
         "{} --link-static {argument}",
         prefix.join("llvm-config").display(),

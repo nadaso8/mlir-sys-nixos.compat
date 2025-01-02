@@ -1,3 +1,6 @@
+# why? 
+The current methods for linking MLIR in build.rs are not well suited to how mlir is provided as a library on distros such as nixos. This forks aims to be a minimal remedy to this problem adjusting build.rs to suit linking an mlir instance which may not necesarilly be known to llvm-config. 
+
 # mlir-sys
 
 [![GitHub Action](https://img.shields.io/github/actions/workflow/status/femtomc/mlir-sys/test.yaml?style=flat-square)](https://github.com/femtomc/mlir-sys/actions)

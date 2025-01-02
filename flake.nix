@@ -16,7 +16,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
         rustToolchain = fenix.packages.${system}.fromToolchainFile {
           file = ./rust-toolchain.toml;
-          sha256 = "";
+          sha256 = "sha256-s1RPtyvDGJaX/BisLT+ifVfuhDT1nZkZ1NcK8sbwELM=";
         };
         rustPlatform = pkgs.makeRustPlatform {
           # inherit (rustToolchain) cargo rustc;
@@ -32,6 +32,8 @@
         devShells.default = pkgs.mkShell {
           buildInputs = (with pkgs; [
 	    # dependencies go here
+	    llvmPackages_19.libllvm
+	    llvmPackages_19.mlir
 	  ]) ++ [
             rustToolchain
             rustPlatform.bindgenHook
